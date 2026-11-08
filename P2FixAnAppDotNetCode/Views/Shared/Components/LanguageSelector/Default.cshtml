@@ -2,30 +2,34 @@
 @model P2FixAnAppDotNetCode.Models.ViewModels.LanguageViewModel
 @{
     string langue = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
-    // { valeur envoyée au contrôleur, code de culture, nom de la langue dans cette langue }
+    // { valeur envoyée au contrôleur, code de culture, nom de la langue, code affiché }
     var langues = new[]
     {
-        new[] { "French", "fr", "Français" },
-        new[] { "English", "en", "English" },
-        new[] { "Wolof", "wo", "Wolof" },
-        new[] { "Spanish", "es", "Español" }
+        new[] { "French", "fr", "Français", "FR" },
+        new[] { "English", "en", "English", "EN" },
+        new[] { "Wolof", "wo", "Wolof", "WO" },
+        new[] { "Spanish", "es", "Español", "ES" }
     };
+    var courante = langues.FirstOrDefault(l => l[1] == langue) ?? langues[1];
 }
 <form class="lang-form" asp-controller="Language" asp-action="ChangeUiLanguage" method="post">
-    <label for="choix-langue"><i class="fa fa-globe" aria-hidden="true"></i> @Localizer["Language"]</label>
-    <select id="choix-langue" name="Language">
-        @foreach (var l in langues)
-        {
-            if (l[1] == langue)
-            {
-                <option value="@l[0]" lang="@l[1]" selected>@l[2]</option>
-            }
-            else
-            {
-                <option value="@l[0]" lang="@l[1]">@l[2]</option>
-            }
-        }
-    </select>
     <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.Path" />
-    <button type="submit" class="btn btn-light">@Localizer["Apply"]</button>
+    <details class="lang-menu">
+        <summary title="@Localizer["Language"] : @courante[2]" aria-label="@Localizer["Language"] : @courante[2]">
+            <img class="flag" src="/images/flags/@(courante[1]).svg" alt="" />
+            <span>@courante[3]</span>
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+        </summary>
+        <ul class="lang-list">
+            @foreach (var l in langues)
+            {
+                <li>
+                    <button type="submit" name="Language" value="@l[0]" lang="@l[1]" title="@l[2]" aria-label="@l[2]" class="@(l[1] == courante[1] ? "active" : null)">
+                        <img class="flag" src="/images/flags/@(l[1]).svg" alt="" />
+                        <span>@l[3]</span>
+                    </button>
+                </li>
+            }
+        </ul>
+    </details>
 </form>

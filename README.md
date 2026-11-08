@@ -189,15 +189,15 @@ Elle a été reprise selon les 8 critères de Bastien et Scapin (INRIA, 1993).
 | | Lisibilité | Fond clair, texte foncé bien contrasté, police système, chiffres alignés, prix séparés par milliers (`88 000 FCFA`). |
 | **2. Charge de travail** | Brièveté | Boutons **−** / **+** pour changer une quantité directement dans le panier. Pays pré-rempli (« Sénégal »). Saisie automatique du navigateur (`autocomplete`). |
 | | Densité informationnelle | Colonnes réduites à l'essentiel (Produit, Prix, Disponibilité, Action). Le prix moyen est relégué en petit sous le total. |
-| **3. Contrôle explicite** | Actions explicites | Aucune action automatique : l'ajout laisse l'utilisateur sur la liste. Changement de langue validé par « Appliquer ». Commande validée par « Confirmer la commande ». |
+| **3. Contrôle explicite** | Actions explicites | Aucune action automatique : l'ajout laisse l'utilisateur sur la liste. Changement de langue déclenché uniquement par un clic sur la langue voulue. Commande validée par « Confirmer la commande ». |
 | | Contrôle utilisateur | Retour possible à chaque étape (« Continuer les achats », « Retour au panier », « Retour à la boutique »). |
-| **4. Adaptabilité** | Flexibilité | 4 langues (français, anglais, wolof, espagnol), chacune présentée dans sa propre langue. Mise en page adaptée aux petits écrans. |
+| **4. Adaptabilité** | Flexibilité | 4 langues (français, anglais, wolof, espagnol), proposées dans l'en-tête sous forme de drapeau et de code (FR, EN, WO, ES). Le nom complet s'affiche au survol et est lu par les lecteurs d'écran. Mise en page adaptée aux petits écrans. |
 | | Expérience de l'utilisateur | Lien d'évitement « Aller au contenu principal » pour le clavier. Focus visible. Libellés pour les lecteurs d'écran (`aria-label`, `sr-only`). |
 | **5. Gestion des erreurs** | Protection | Confirmation avant de retirer un produit. Bouton d'ajout désactivé quand le stock est atteint. Formulaire inaccessible si le panier est vide. |
 | | Qualité des messages | Messages traduits, placés sous le champ concerné (« Veuillez renseigner un nom »), validés dès la saisie (côté client) et côté serveur. |
 | | Correction | Les champs en erreur sont encadrés en rouge et conservent les valeurs déjà saisies. |
 | **6. Homogénéité / cohérence** | — | Une seule couleur pour les actions principales (vert), un style secondaire (contour) pour les retours, rouge pour la suppression. Même format de prix partout. Même structure de page. |
-| **7. Signifiance des codes et dénominations** | — | Icônes toujours accompagnées d'un texte (panier, poubelle, coche). Libellés clairs : « Adresse » au lieu de « Localisation », « Code postal (facultatif) », « Stock maximum atteint ». Pastilles vertes et orange pour la disponibilité. |
+| **7. Signifiance des codes et dénominations** | — | Icônes toujours accompagnées d'un texte (panier, poubelle, coche), drapeaux accompagnés du code de la langue. Colonne « Action » nommée dans la liste des produits. Libellés clairs : « Adresse » au lieu de « Localisation », « Code postal (facultatif) », « Stock maximum atteint ». Pastilles vertes et orange pour la disponibilité. |
 | **8. Compatibilité** | — | Prix en **FCFA**, pays par défaut **Sénégal**, interface en **wolof**, exemples de saisie locaux (Awa Diop, Dakar). |
 
 Fichiers modifiés :

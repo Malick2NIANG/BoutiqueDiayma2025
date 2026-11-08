@@ -38,12 +38,23 @@
 
     <footer class="site-footer">
         <div class="container footer-inner">
-            <p>&copy; 2026 Boutique Diayma · @Localizer["FooterNote"]</p>
+            <p>&copy; 2026 Boutique Diayma</p>
         </div>
     </footer>
 
     <script>
         // Demande une confirmation avant les actions destructrices (formulaires portant data-confirm)
+        // Ferme le menu des langues quand on clique ailleurs ou qu'on appuie sur Échap
+        document.addEventListener('click', function (e) {
+            document.querySelectorAll('details.lang-menu[open]').forEach(function (menu) {
+                if (!menu.contains(e.target)) { menu.removeAttribute('open'); }
+            });
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('details.lang-menu[open]').forEach(function (menu) { menu.removeAttribute('open'); });
+            }
+        });
         document.addEventListener('submit', function (e) {
             var message = e.target.getAttribute('data-confirm');
             if (message && !window.confirm(message)) {
