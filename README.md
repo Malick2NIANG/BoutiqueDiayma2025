@@ -68,8 +68,13 @@ Mon dépôt : https://github.com/Malick2NIANG/BoutiqueDiayma2025
 | 5 | Le choix « Espagnol » ne change rien : la culture `es` n'est pas déclarée dans `SupportedCultures` et il n'existe aucun fichier `.es.resx`. | `Startup.cs`, `Resources/` |
 | 6 | On peut ajouter au panier plus d'articles qu'il n'y en a en stock : aucun contrôle dans `AddToCart`. | `CartController.cs` |
 | 7 | Le panier est un **Singleton**, donc partagé par tous les visiteurs du site. Pour une vraie boutique, il faudrait un panier par session (`AddSession` est configuré mais pas utilisé pour le panier). | `Startup.cs` l. 29 |
+| 8 | Les prix sont affichés en **euros (€)** ou avec le symbole de la culture du navigateur (`ToString("c")`), alors que les prix du catalogue sont en **francs CFA** : une clé USB affichée à « 1 000,00 € ». | Vues `Product/Index`, `Cart/Index`, `CartSummary` |
 
-Les anomalies 1 à 4 sont corrigées dans le commit « Correction des bugs ».
+Corrections apportées :
+- anomalies 1 à 4 : commit « Correction des bugs » ;
+- anomalies 5, 6 et 8 : commit « Devise FCFA, contrôle du stock et langue espagnole ». Les prix s'affichent en FCFA (`ToString("N0") + " FCFA"`). `AddToCart` refuse d'ajouter au panier plus d'articles que le stock disponible. La culture `es` est déclarée et des fichiers `.es.resx` traduisent l'interface en espagnol.
+
+L'anomalie 7 (panier partagé entre tous les visiteurs) n'est pas corrigée : il faudrait stocker le panier dans la session de chaque utilisateur, ce qui dépasse le cadre du TD.
 
 ## 7. Points d'arrêt
 
@@ -158,5 +163,6 @@ Le dossier `publish/` contient **`Diayma.exe`**. Un double-clic démarre le serv
 1. **Correction des bugs** : total et moyenne du panier, stock non mis à jour, ressources de validation de `Order`, `NullReferenceException`.
 2. **Ajout de la langue wolof** : culture `wo`, sélecteur, fichiers `.wo.resx`.
 3. **README** : réponses du TD.
+4. **Devise FCFA, contrôle du stock et langue espagnole** : anomalies 5, 6 et 8.
 
 ### c) Dépôt du lien GitHub sur Google Classroom
