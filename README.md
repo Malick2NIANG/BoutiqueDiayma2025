@@ -71,7 +71,7 @@ Mon dépôt : https://github.com/Malick2NIANG/BoutiqueDiayma2025
 | 8 | Les prix sont affichés en **euros (€)** ou avec le symbole de la culture du navigateur (`ToString("c")`), alors que les prix du catalogue sont en **francs CFA** : une clé USB affichée à « 1 000,00 € ». | Vues `Product/Index`, `Cart/Index`, `CartSummary` |
 
 Corrections apportées :
-- anomalies 1 à 4 : commit « Correction des bugs » ;
+- anomalies 1, 2 et 4 : commit « Correction des bugs » ; anomalie 3 : commit « Traduction des messages de validation » ;
 - anomalies 5, 6 et 8 : commit « Devise FCFA, contrôle du stock et langue espagnole ». Les prix s'affichent en FCFA (`ToString("N0") + " FCFA"`). `AddToCart` refuse d'ajouter au panier plus d'articles que le stock disponible. La culture `es` est déclarée et des fichiers `.es.resx` traduisent l'interface en espagnol.
 
 L'anomalie 7 (panier partagé entre tous les visiteurs) n'est pas corrigée : il faudrait stocker le panier dans la session de chaque utilisateur, ce qui dépasse le cadre du TD.
@@ -147,7 +147,9 @@ Le dossier `publish/` contient **`Diayma.exe`**. Un double-clic démarre le serv
 
 ## 10. Lien vers l'exécutable
 
-*[lien Google Drive / OneDrive vers Diayma-win-x64.zip]*
+**Diayma-win-x64.zip** (41 Mo, exécutable autonome Windows x64) : https://drive.google.com/file/d/19NPQqlyygVj33WvvLL-joGVSmpS6dzu2/view?usp=drive_link
+
+Décompresser l'archive, lancer `Diayma.exe`, puis ouvrir http://localhost:5000 dans un navigateur.
 
 ## 11. Partie optionnelle
 
@@ -160,11 +162,15 @@ Le dossier `publish/` contient **`Diayma.exe`**. Un double-clic démarre le serv
 
 ### b) Commits
 
-1. **Correction des bugs** : total et moyenne du panier, stock non mis à jour, ressources de validation de `Order`, `NullReferenceException`.
+1. **Correction des bugs** : total et moyenne du panier, stock non mis à jour, `NullReferenceException`.
 2. **Ajout de la langue wolof** : culture `wo`, sélecteur, fichiers `.wo.resx`.
 3. **README** : réponses du TD.
 4. **Devise FCFA, contrôle du stock et langue espagnole** : anomalies 5, 6 et 8.
 5. **Refonte de l'interface selon les critères de Bastien et Scapin** : voir la section 12.
+6. **Sélecteur de langue déplacé dans l'en-tête**.
+7. **Menu des langues avec drapeaux, colonne Action, pied de page simplifié**.
+8. **Traduction des messages de validation** (cause : renommage du projet) et tableaux adaptés aux petits écrans.
+9. **README : lien vers l'exécutable Windows**.
 
 ### c) Dépôt du lien GitHub sur Google Classroom
 
