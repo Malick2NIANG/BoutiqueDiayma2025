@@ -63,7 +63,7 @@ Mon dépôt : https://github.com/Malick2NIANG/BoutiqueDiayma2025
 
 | # | Anomalie | Emplacement |
 |---|---|---|
-| 3 | Les messages d'erreur du formulaire de commande s'affichent sous forme de clés brutes (`ErrorMissingName`…) au lieu du texte traduit. Les `.resx` de la classe `Order` sont rangés dans `Resources/Models/ViewModels/` alors que `Order` est dans l'espace de noms `Models` (chemin attendu : `Resources/Models/Order.*.resx`). En plus, le `.csproj` exclut `Order.en.resx` des ressources incorporées. | `Resources/`, `Diayma.csproj` |
+| 3 | Les messages d'erreur du formulaire de commande s'affichent sous forme de clés brutes (`ErrorMissingName`…), et le message « panier vide » du contrôleur n'est pas traduit. **Cause** : le professeur a renommé le projet `Diayma.csproj`. Le nom de l'assemblage est donc passé de `P2FixAnAppDotNetCode` à `Diayma`, alors que les classes restent dans l'espace de noms `P2FixAnAppDotNetCode`. La localisation par type cherche désormais `Diayma.Resources.P2FixAnAppDotNetCode.Models.Order`, ressource qui n'existait pas. En plus, les `.resx` de `Order` étaient rangés dans `Models/ViewModels/` et le `.csproj` excluait `Order.en.resx`. **Correction** : fichiers déplacés dans `Resources/P2FixAnAppDotNetCode/Models/` et `Resources/P2FixAnAppDotNetCode/Controllers/`. Les vues ne sont pas concernées : elles sont localisées par chemin de fichier. | `Resources/`, `Diayma.csproj` |
 | 4 | `FindProductInCartLines()` lève une `NullReferenceException` si le produit n'est pas dans le panier (`FirstOrDefault().Product`). | `Models/Cart.cs` |
 | 5 | Le choix « Espagnol » ne change rien : la culture `es` n'est pas déclarée dans `SupportedCultures` et il n'existe aucun fichier `.es.resx`. | `Startup.cs`, `Resources/` |
 | 6 | On peut ajouter au panier plus d'articles qu'il n'y en a en stock : aucun contrôle dans `AddToCart`. | `CartController.cs` |
@@ -188,7 +188,7 @@ Elle a été reprise selon les 8 critères de Bastien et Scapin (INRIA, 1993).
 | | Feedback immédiat | Message « « Clé USB… » a été ajouté à votre panier » après chaque ajout. Compteur d'articles et total dans l'en-tête. Mention « n dans votre panier » sur chaque produit. |
 | | Lisibilité | Fond clair, texte foncé bien contrasté, police système, chiffres alignés, prix séparés par milliers (`88 000 FCFA`). |
 | **2. Charge de travail** | Brièveté | Boutons **−** / **+** pour changer une quantité directement dans le panier. Pays pré-rempli (« Sénégal »). Saisie automatique du navigateur (`autocomplete`). |
-| | Densité informationnelle | Colonnes réduites à l'essentiel (Produit, Prix, Disponibilité, Action). Le prix moyen est relégué en petit sous le total. |
+| | Densité informationnelle | Colonnes réduites à l'essentiel (Produit, Prix, Disponibilité, Action). Sur petit écran, chaque ligne devient une carte : plus de défilement horizontal. Le prix moyen est relégué en petit sous le total. |
 | **3. Contrôle explicite** | Actions explicites | Aucune action automatique : l'ajout laisse l'utilisateur sur la liste. Changement de langue déclenché uniquement par un clic sur la langue voulue. Commande validée par « Confirmer la commande ». |
 | | Contrôle utilisateur | Retour possible à chaque étape (« Continuer les achats », « Retour au panier », « Retour à la boutique »). |
 | **4. Adaptabilité** | Flexibilité | 4 langues (français, anglais, wolof, espagnol), proposées dans l'en-tête sous forme de drapeau et de code (FR, EN, WO, ES). Le nom complet s'affiche au survol et est lu par les lecteurs d'écran. Mise en page adaptée aux petits écrans. |

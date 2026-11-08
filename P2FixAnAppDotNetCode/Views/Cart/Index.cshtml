@@ -46,8 +46,8 @@ else
                             <span class="product-name">@line.Product.Name</span>
                             <span class="product-desc">@line.Product.Description</span>
                         </td>
-                        <td class="num">@line.Product.Price.ToString("N0") FCFA</td>
-                        <td class="center">
+                        <td class="num" data-label="@Localizer["UnitPrice"]">@line.Product.Price.ToString("N0") FCFA</td>
+                        <td class="center" data-label="@Localizer["Quantity"]">
                             <div class="qty">
                                 <form asp-controller="Cart" asp-action="DecreaseQuantity" method="post">
                                     <input type="hidden" name="id" value="@line.Product.Id" />
@@ -74,7 +74,7 @@ else
                                 }
                             </div>
                         </td>
-                        <td class="num strong">@((line.Quantity * line.Product.Price).ToString("N0")) FCFA</td>
+                        <td class="num strong" data-label="@Localizer["Subtotal"]">@((line.Quantity * line.Product.Price).ToString("N0")) FCFA</td>
                         <td class="action-col">
                             <form asp-controller="Cart" asp-action="RemoveFromCart" method="post" data-confirm="@Localizer["ConfirmRemove"]">
                                 <input type="hidden" name="id" value="@line.Product.Id" />

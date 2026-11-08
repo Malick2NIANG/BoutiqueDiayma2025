@@ -50,8 +50,8 @@ else if (message == "stock")
                         <span class="product-name">@p.Name</span>
                         <span class="product-desc">@p.Description</span>
                     </td>
-                    <td class="num price">@p.Price.ToString("N0") FCFA</td>
-                    <td>
+                    <td class="num price" data-label="@Localizer["Price"]">@p.Price.ToString("N0") FCFA</td>
+                    <td data-label="@Localizer["Availability"]">
                         @if (p.Stock <= 10)
                         {
                             <span class="badge-stock low">@Localizer["LowStock", p.Stock]</span>
