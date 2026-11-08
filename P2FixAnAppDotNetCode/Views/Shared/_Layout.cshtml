@@ -27,6 +27,7 @@
             <nav class="main-nav" aria-label="@Localizer["MainMenu"]">
                 <a asp-controller="Product" asp-action="Index">@Localizer["Products"]</a>
                 @await Component.InvokeAsync("CartSummary")
+                @await Component.InvokeAsync("LanguageSelector")
             </nav>
         </div>
     </header>
@@ -38,7 +39,6 @@
     <footer class="site-footer">
         <div class="container footer-inner">
             <p>&copy; 2026 Boutique Diayma · @Localizer["FooterNote"]</p>
-            @await Component.InvokeAsync("LanguageSelector")
         </div>
     </footer>
 

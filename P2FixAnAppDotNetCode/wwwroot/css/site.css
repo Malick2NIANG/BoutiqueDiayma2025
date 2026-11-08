@@ -206,9 +206,14 @@ td form { margin: 0; }
 .site-footer { padding: 16px 0; background: #fff; border-top: 1px solid var(--bord); color: var(--gris); font-size: .9rem; }
 .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
 .footer-inner p { margin: 0; }
-.lang-form { display: flex; align-items: center; gap: 8px; margin: 0; }
-.lang-form label { margin: 0; color: var(--texte); font-weight: 600; }
-.lang-form select { min-height: 34px; padding: 2px 8px; border: 1px solid #b8c1cc; border-radius: 6px; background: #fff; }
+.lang-form { display: flex; align-items: center; gap: 6px; margin: 0; }
+.lang-form label { margin: 0; color: #fff; font-weight: 600; }
+.lang-form select {
+    min-height: 34px; padding: 2px 8px; border: 1px solid rgba(255, 255, 255, .6);
+    border-radius: 6px; background: #fff; color: var(--texte);
+}
+.lang-form .btn-light { border-color: #fff; }
+.main-nav { flex-wrap: wrap; }
 
 /* ---------- Petits écrans (adaptabilité) ---------- */
 @media (max-width: 768px) {

@@ -128,7 +128,7 @@ La route par défaut envoie `/` vers **`ProductController.Index`**. Avant d'appe
 | 18 | `AspNetCore` | `_Views_Shared__Layout` (`Views/Shared/_Layout.cshtml`) | `ExecuteAsync()` | Le layout (défini par `_ViewStart.cshtml`) entoure le contenu (`@RenderBody()`) et appelle `@await Component.InvokeAsync("CartSummary")` dans l'en-tête |
 | 19 | `P2FixAnAppDotNetCode.Models` | `Cart` | (constructeur implicite, initialisation de `_lignesPanier`) | Singleton créé à la première utilisation |
 | 20 | `P2FixAnAppDotNetCode.Components` | `CartSummaryViewComponent` | `CartSummaryViewComponent(ICart)` (**point d'arrêt l. 12**) puis `Invoke()` | **F10** puis **F11** dans `Invoke()` → `View(_cart)` → `Views/Shared/Components/CartSummary/Default.cshtml` (lien « Panier » avec le nombre d'articles) |
-| 21 | `P2FixAnAppDotNetCode.Components` | `LanguageSelectorViewComponent` | `Invoke(ILanguageService)` | Appelé dans le pied de page de `_Layout` → `Views/Shared/Components/LanguageSelector/Default.cshtml` (liste des langues). **F10**, puis **F5** : la page s'affiche dans le navigateur |
+| 21 | `P2FixAnAppDotNetCode.Components` | `LanguageSelectorViewComponent` | `Invoke(ILanguageService)` | Appelé dans l'en-tête de `_Layout`, à droite du panier → `Views/Shared/Components/LanguageSelector/Default.cshtml` (liste des langues). **F10**, puis **F5** : la page s'affiche dans le navigateur |
 
 **À retenir** : sur la page d'accueil, seuls les points d'arrêt de `Startup` (l. 20, une fois), `ProductController` (l. 15) et `CartSummaryViewComponent` (l. 12) sont atteints. Ceux de **`CartController` (l. 15)** et **`OrderController` (l. 17)** ne le sont que plus tard : au clic sur *Ajouter au panier* (`POST /Cart/AddToCart`) et sur *Passer la commande* (`/Order/Index`).
 
@@ -184,7 +184,7 @@ Elle a été reprise selon les 8 critères de Bastien et Scapin (INRIA, 1993).
 | Critère | Sous-critère | Mise en œuvre dans Boutique Diayma |
 |---|---|---|
 | **1. Guidage** | Incitation | Titre et phrase d'introduction sur chaque page. Barre d'étapes *Panier → Livraison → Confirmation*. Exemples de saisie dans les champs (« ex. : Dakar »). |
-| | Groupement / distinction | En-tête (marque, navigation, panier), contenu, pied de page (langue). Nom et description du produit regroupés. Montants alignés à droite. Récapitulatif de commande séparé du formulaire. |
+| | Groupement / distinction | En-tête (marque, navigation, panier, choix de la langue), contenu, pied de page. Nom et description du produit regroupés. Montants alignés à droite. Récapitulatif de commande séparé du formulaire. |
 | | Feedback immédiat | Message « « Clé USB… » a été ajouté à votre panier » après chaque ajout. Compteur d'articles et total dans l'en-tête. Mention « n dans votre panier » sur chaque produit. |
 | | Lisibilité | Fond clair, texte foncé bien contrasté, police système, chiffres alignés, prix séparés par milliers (`88 000 FCFA`). |
 | **2. Charge de travail** | Brièveté | Boutons **−** / **+** pour changer une quantité directement dans le panier. Pays pré-rempli (« Sénégal »). Saisie automatique du navigateur (`autocomplete`). |
