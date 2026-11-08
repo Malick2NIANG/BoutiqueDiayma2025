@@ -12,8 +12,14 @@ namespace P2FixAnAppDotNetCode.Models.Repositories
 
         public ProductRepository()
         {
-            _products = new List<Product>();
-            GenerateProductData();
+            // Correction : la liste statique n'est générée qu'une seule fois.
+            // Avant, chaque nouvelle instance (service Transient) la réinitialisait
+            // et les mises à jour de stock après commande étaient perdues.
+            if (_products == null)
+            {
+                _products = new List<Product>();
+                GenerateProductData();
+            }
         }
 
         /// <summary>
@@ -52,7 +58,7 @@ namespace P2FixAnAppDotNetCode.Models.Repositories
             Product product = _products.First(p => p.Id == productId);
             product.Stock = product.Stock - quantityToRemove;
 
-            if (product.Stock == 0)
+            if (product.Stock <= 0)
                 _products.Remove(product);
         }
     }
