@@ -150,4 +150,49 @@
   <data name="Zip" xml:space="preserve">
     <value>Código postal</value>
   </data>
+  <data name="DeliveryTitle" xml:space="preserve">
+    <value>Datos de entrega</value>
+  </data>
+  <data name="DeliveryIntro" xml:space="preserve">
+    <value>Indíquenos dónde entregar su pedido.</value>
+  </data>
+  <data name="RequiredLegend" xml:space="preserve">
+    <value>Los campos marcados con * son obligatorios.</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Nombre completo</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Dirección</value>
+  </data>
+  <data name="NamePlaceholder" xml:space="preserve">
+    <value>p. ej.: Awa Diop</value>
+  </data>
+  <data name="AddressPlaceholder" xml:space="preserve">
+    <value>p. ej.: Calle Carnot 12</value>
+  </data>
+  <data name="CityPlaceholder" xml:space="preserve">
+    <value>p. ej.: Dakar</value>
+  </data>
+  <data name="ZipOptional" xml:space="preserve">
+    <value>Código postal (opcional)</value>
+  </data>
+  <data name="BackToCart" xml:space="preserve">
+    <value>Volver al carrito</value>
+  </data>
+  <data name="ConfirmOrder" xml:space="preserve">
+    <value>Confirmar el pedido</value>
+  </data>
+  <data name="OrderSummary" xml:space="preserve">
+    <value>Resumen del pedido</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="EmptyCart" xml:space="preserve">
+    <value>Su carrito está vacío.</value>
+  </data>
+  <data name="SeeProducts" xml:space="preserve">
+    <value>Ver los productos</value>
+  </data>
 </root>

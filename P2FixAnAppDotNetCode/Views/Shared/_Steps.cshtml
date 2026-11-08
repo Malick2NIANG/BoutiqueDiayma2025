@@ -1,0 +1,14 @@
+@model int
+@functions {
+    string Etat(int etape)
+    {
+        return etape < Model ? "done" : (etape == Model ? "current" : "todo");
+    }
+}
+<nav class="steps-nav" aria-label="@Localizer["Steps"]">
+    <ol class="steps">
+        <li class="@Etat(1)" aria-current="@(Model == 1 ? "step" : null)"><span class="step-num">1</span><span class="step-label">@Localizer["StepCart"]</span></li>
+        <li class="@Etat(2)" aria-current="@(Model == 2 ? "step" : null)"><span class="step-num">2</span><span class="step-label">@Localizer["StepDelivery"]</span></li>
+        <li class="@Etat(3)" aria-current="@(Model == 3 ? "step" : null)"><span class="step-num">3</span><span class="step-label">@Localizer["StepConfirmation"]</span></li>
+    </ol>
+</nav>

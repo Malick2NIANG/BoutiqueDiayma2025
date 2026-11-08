@@ -135,4 +135,37 @@
   <data name="Stock" xml:space="preserve">
     <value>Stock</value>
   </data>
+  <data name="Intro" xml:space="preserve">
+    <value>Tànnal say marsandiis te yokk leen ci sa panier.</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Marsandiis</value>
+  </data>
+  <data name="Availability" xml:space="preserve">
+    <value>Ndax am na</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Jëf</value>
+  </data>
+  <data name="InStock" xml:space="preserve">
+    <value>Am na ({0})</value>
+  </data>
+  <data name="LowStock" xml:space="preserve">
+    <value>Des na {0} rekk</value>
+  </data>
+  <data name="InCart" xml:space="preserve">
+    <value>{0} ci sa panier</value>
+  </data>
+  <data name="AddedToCart" xml:space="preserve">
+    <value>« {0} » yokku nañu ko ci sa panier.</value>
+  </data>
+  <data name="StockLimit" xml:space="preserve">
+    <value>Sa panier am na stock bi yépp bu « {0} ».</value>
+  </data>
+  <data name="MaxReached" xml:space="preserve">
+    <value>Stock bi jeex na</value>
+  </data>
+  <data name="ViewCart" xml:space="preserve">
+    <value>Xool panier bi</value>
+  </data>
 </root>

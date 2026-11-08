@@ -1,2 +1,13 @@
-﻿<h2>@Localizer["Thanks"]</h2>
-<p>@Localizer["DemoEnding"]</p>
+@{
+    ViewData["Title"] = Localizer["Thanks"];
+}
+
+@await Html.PartialAsync("_Steps", 3)
+
+<div class="empty-state success" role="status">
+    <i class="fa fa-check-circle" aria-hidden="true"></i>
+    <h1>@Localizer["Thanks"]</h1>
+    <p class="empty-title">@Localizer["OrderConfirmed"]</p>
+    <p>@Localizer["ShipSoon"]</p>
+    <a class="btn btn-primary" asp-controller="Product" asp-action="Index">@Localizer["BackToShop"]</a>
+</div>

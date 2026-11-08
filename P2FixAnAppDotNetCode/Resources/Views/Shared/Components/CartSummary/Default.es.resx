@@ -120,4 +120,13 @@
   <data name="YourCart" xml:space="preserve">
     <value>Su carrito</value>
   </data>
+  <data name="Cart" xml:space="preserve">
+    <value>Carrito</value>
+  </data>
+  <data name="OpenCart" xml:space="preserve">
+    <value>Ver mi carrito</value>
+  </data>
+  <data name="ItemsCount" xml:space="preserve">
+    <value>{0} artículo(s) en el carrito</value>
+  </data>
 </root>

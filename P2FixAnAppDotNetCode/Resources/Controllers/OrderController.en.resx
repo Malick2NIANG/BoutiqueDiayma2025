@@ -120,4 +120,7 @@
   <data name="CartEmpty" xml:space="preserve">
     <value>Sorry, your cart is empty !</value>
   </data>
+  <data name="DefaultCountry" xml:space="preserve">
+    <value>Senegal</value>
+  </data>
 </root>

@@ -120,4 +120,7 @@
   <data name="CartEmpty" xml:space="preserve">
     <value>¡Lo sentimos, su carrito está vacío!</value>
   </data>
+  <data name="DefaultCountry" xml:space="preserve">
+    <value>Senegal</value>
+  </data>
 </root>

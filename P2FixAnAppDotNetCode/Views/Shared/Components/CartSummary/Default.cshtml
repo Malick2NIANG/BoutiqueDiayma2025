@@ -1,17 +1,13 @@
-﻿@using Microsoft.AspNetCore.Http.Extensions
-@using Microsoft.AspNetCore.Localization
 @model P2FixAnAppDotNetCode.Models.Cart
-
-<div class="">
-    @if (Model.Lines.Count() > 0)
+@{
+    int nbArticles = Model.Lines.Sum(x => x.Quantity);
+}
+<a class="cart-link" asp-controller="Cart" asp-action="Index" title="@Localizer["OpenCart"]">
+    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+    <span>@Localizer["Cart"]</span>
+    <span class="cart-count" aria-label="@Localizer["ItemsCount", nbArticles]">@nbArticles</span>
+    @if (nbArticles > 0)
     {
-        <small class="navbar-text">
-            <b>@Localizer["YourCart"]:</b>
-            @Model.Lines.Sum(x => x.Quantity) item(s)
-            @Model.GetTotalValue().ToString("N0") FCFA
-        </small>
+        <span class="cart-total">@Model.GetTotalValue().ToString("N0") FCFA</span>
     }
-    <a class="btn btn-sm btn-secondary navbar-btn" asp-controller="Cart" asp-action="Index">
-        <i class="fa fa-shopping-cart"></i>
-    </a>
-</div>
+</a>

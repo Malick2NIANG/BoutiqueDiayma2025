@@ -1,19 +1,31 @@
-﻿@model P2FixAnAppDotNetCode.Models.ViewModels.LanguageViewModel
-
-<form asp-action="ChangeUiLanguage" asp-controller="Language" method="post">
-    <div class="form-group">
-        <label class="col-md-3 control-label" style="float:left">@Localizer["Language"]</label>
-        <div class="col-md-7" style="float:left">
-            <select asp-for="Language">
-                <option disabled selected style="font-style:italic">@Localizer["ChangeLanguage"]</option>
-                <option value="English">@Localizer["LanguageEnglish"]</option>
-                <option value="French">@Localizer["LanguageFrench"]</option>
-                <option value="Spanish">@Localizer["LanguageSpanish"]</option>
-                <option value="Wolof">@Localizer["LanguageWolof"]</option>
-            </select>
-        </div>
-        <input type="hidden" name="returnUrl"
-               value="@ViewContext.HttpContext.Request.Path" />
-        <button class="col-md-2" type="submit" style="float:left"> OK </button>
-    </div>
+@using System.Globalization
+@model P2FixAnAppDotNetCode.Models.ViewModels.LanguageViewModel
+@{
+    string langue = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+    // { valeur envoyée au contrôleur, code de culture, nom de la langue dans cette langue }
+    var langues = new[]
+    {
+        new[] { "French", "fr", "Français" },
+        new[] { "English", "en", "English" },
+        new[] { "Wolof", "wo", "Wolof" },
+        new[] { "Spanish", "es", "Español" }
+    };
+}
+<form class="lang-form" asp-controller="Language" asp-action="ChangeUiLanguage" method="post">
+    <label for="choix-langue"><i class="fa fa-globe" aria-hidden="true"></i> @Localizer["Language"]</label>
+    <select id="choix-langue" name="Language">
+        @foreach (var l in langues)
+        {
+            if (l[1] == langue)
+            {
+                <option value="@l[0]" lang="@l[1]" selected>@l[2]</option>
+            }
+            else
+            {
+                <option value="@l[0]" lang="@l[1]">@l[2]</option>
+            }
+        }
+    </select>
+    <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.Path" />
+    <button type="submit" class="btn btn-light">@Localizer["Apply"]</button>
 </form>

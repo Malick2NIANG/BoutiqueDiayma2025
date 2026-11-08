@@ -1,43 +1,86 @@
-﻿@using P2FixAnAppDotNetCode.Models
+@using P2FixAnAppDotNetCode.Models
 @model IEnumerable<P2FixAnAppDotNetCode.Models.Product>
+@inject ICart PanierService
 @{
     ViewData["Title"] = Localizer["ProductList"];
+    Cart panier = PanierService as Cart;
+    string message = TempData["CartMessage"] as string;
+    string produitConcerne = TempData["CartProduct"] as string;
 }
 
-<br/>
-<div id="panel-body">
-    <table class="table table-bordered table-striped table-sm">
+<div class="page-head">
+    <h1>@Localizer["ProductList"]</h1>
+    <p class="lead-text">@Localizer["Intro"]</p>
+</div>
+
+@if (message == "added")
+{
+    <div class="notice notice-success" role="status">
+        <i class="fa fa-check-circle" aria-hidden="true"></i>
+        <span>@Localizer["AddedToCart", produitConcerne]</span>
+        <a class="notice-link" asp-controller="Cart" asp-action="Index">@Localizer["ViewCart"] <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+    </div>
+}
+else if (message == "stock")
+{
+    <div class="notice notice-warning" role="alert">
+        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+        <span>@Localizer["StockLimit", produitConcerne]</span>
+    </div>
+}
+
+<div class="table-wrap">
+    <table class="data-table">
+        <caption class="sr-only">@Localizer["ProductList"]</caption>
         <thead>
             <tr>
-                <th>
-                    <label>@Localizer["Name"]</label>
-                </th>
-                <th>
-                    <label>@Localizer["Description"]</label>
-                </th>
-                <th>
-                    <label>@Localizer["Price"]</label>
-                </th>
-                <th>
-                    <label>@Localizer["Stock"]</label>
-                </th>
+                <th scope="col">@Localizer["Product"]</th>
+                <th scope="col" class="num">@Localizer["Price"]</th>
+                <th scope="col">@Localizer["Availability"]</th>
+                <th scope="col" class="action-col"><span class="sr-only">@Localizer["Action"]</span></th>
             </tr>
         </thead>
         <tbody>
             @foreach (Product p in Model)
             {
+                int dansPanier = panier == null ? 0 : panier.Lines.Where(l => l.Product.Id == p.Id).Sum(l => l.Quantity);
+                bool maxAtteint = dansPanier >= p.Stock;
                 <tr>
-                    <td>@p.Name</td>
-                    <td>@p.Description</td>
-                    <td style="text-align:center">@p.Price.ToString("N0") FCFA</td>
-                    <td style="text-align:center">@p.Stock</td>
                     <td>
-                        <form id="@p.Id" asp-action="AddToCart" asp-controller="Cart" method="post">
-                            <input type="hidden" name="id" value="@p.Id" />
-                            <button type="submit" class="btn btn-primary">
-                                @Localizer["AddToCart"]
+                        <span class="product-name">@p.Name</span>
+                        <span class="product-desc">@p.Description</span>
+                    </td>
+                    <td class="num price">@p.Price.ToString("N0") FCFA</td>
+                    <td>
+                        @if (p.Stock <= 10)
+                        {
+                            <span class="badge-stock low">@Localizer["LowStock", p.Stock]</span>
+                        }
+                        else
+                        {
+                            <span class="badge-stock ok">@Localizer["InStock", p.Stock]</span>
+                        }
+                        @if (dansPanier > 0)
+                        {
+                            <span class="in-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i> @Localizer["InCart", dansPanier]</span>
+                        }
+                    </td>
+                    <td class="action-col">
+                        @if (maxAtteint)
+                        {
+                            <button type="button" class="btn btn-disabled" disabled>
+                                <i class="fa fa-ban" aria-hidden="true"></i> @Localizer["MaxReached"]
                             </button>
-                        </form>
+                        }
+                        else
+                        {
+                            <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                                <input type="hidden" name="id" value="@p.Id" />
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-cart-plus" aria-hidden="true"></i> @Localizer["AddToCart"]
+                                </button>
+                            </form>
+                        }
                     </td>
                 </tr>
             }

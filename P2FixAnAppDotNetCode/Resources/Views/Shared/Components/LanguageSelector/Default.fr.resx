@@ -135,4 +135,7 @@
   <data name="LanguageWolof" xml:space="preserve">
     <value>Wolof</value>
   </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Appliquer</value>
+  </data>
 </root>

@@ -123,4 +123,13 @@
   <data name="Thanks" xml:space="preserve">
     <value>Merci!</value>
   </data>
+  <data name="OrderConfirmed" xml:space="preserve">
+    <value>Votre commande est confirmée.</value>
+  </data>
+  <data name="ShipSoon" xml:space="preserve">
+    <value>Nous vous l'expédierons dans les plus brefs délais.</value>
+  </data>
+  <data name="BackToShop" xml:space="preserve">
+    <value>Retour à la boutique</value>
+  </data>
 </root>

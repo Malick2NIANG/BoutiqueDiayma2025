@@ -123,4 +123,13 @@
   <data name="Thanks" xml:space="preserve">
     <value>Jërëjëf!</value>
   </data>
+  <data name="OrderConfirmed" xml:space="preserve">
+    <value>Sa komand dëggal nañu ko.</value>
+  </data>
+  <data name="ShipSoon" xml:space="preserve">
+    <value>Dinañu la ko yónne ci lu gëna gaaw.</value>
+  </data>
+  <data name="BackToShop" xml:space="preserve">
+    <value>Dellu ci bitig bi</value>
+  </data>
 </root>

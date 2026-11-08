@@ -1,29 +1,85 @@
-﻿@model P2FixAnAppDotNetCode.Models.Order
+@using P2FixAnAppDotNetCode.Models
+@model P2FixAnAppDotNetCode.Models.Order
+@inject ICart PanierService
+@{
+    ViewData["Title"] = Localizer["DeliveryTitle"];
+    Cart panier = PanierService as Cart;
+    int nbArticles = panier == null ? 0 : panier.Lines.Sum(l => l.Quantity);
+}
 
-<h2>@Localizer["OrderTitle"]</h2>
+@await Html.PartialAsync("_Steps", 2)
 
-<div asp-validation-summary="All" class="text-danger"></div>
-<form asp-action="Index" method="post">
-    <h3>@Localizer["ShipTo"]</h3>
-    <div class="form-group">
-        <label>@Localizer["Name"]*:</label><input asp-for="Name" class="form-control" />
+<div class="page-head">
+    <h1>@Localizer["DeliveryTitle"]</h1>
+    <p class="lead-text">@Localizer["DeliveryIntro"]</p>
+</div>
+
+@if (nbArticles == 0)
+{
+    <div class="empty-state">
+        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+        <p class="empty-title">@Localizer["EmptyCart"]</p>
+        <a class="btn btn-primary" asp-controller="Product" asp-action="Index">@Localizer["SeeProducts"]</a>
     </div>
-    <h3>@Localizer["Adress"]</h3>
-    <div class="form-group">
-        <label>@Localizer["Location"]*:</label><input asp-for="Address" class="form-control" />
+}
+else
+{
+    <div class="checkout">
+        <form asp-controller="Order" asp-action="Index" method="post" class="card-box checkout-form">
+            <div asp-validation-summary="ModelOnly" class="notice notice-danger" role="alert"></div>
+            <p class="required-legend">@Localizer["RequiredLegend"]</p>
+
+            <div class="form-group">
+                <label asp-for="Name">@Localizer["FullName"] <span class="req" aria-hidden="true">*</span></label>
+                <input asp-for="Name" class="form-control" placeholder="@Localizer["NamePlaceholder"]" autocomplete="name" aria-required="true" />
+                <span asp-validation-for="Name" class="field-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Address">@Localizer["Address"] <span class="req" aria-hidden="true">*</span></label>
+                <input asp-for="Address" class="form-control" placeholder="@Localizer["AddressPlaceholder"]" autocomplete="street-address" aria-required="true" />
+                <span asp-validation-for="Address" class="field-error"></span>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="City">@Localizer["City"] <span class="req" aria-hidden="true">*</span></label>
+                    <input asp-for="City" class="form-control" placeholder="@Localizer["CityPlaceholder"]" autocomplete="address-level2" aria-required="true" />
+                    <span asp-validation-for="City" class="field-error"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Zip">@Localizer["ZipOptional"]</label>
+                    <input asp-for="Zip" class="form-control" autocomplete="postal-code" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Country">@Localizer["Country"] <span class="req" aria-hidden="true">*</span></label>
+                <input asp-for="Country" class="form-control" autocomplete="country-name" aria-required="true" />
+                <span asp-validation-for="Country" class="field-error"></span>
+            </div>
+
+            <div class="page-actions">
+                <a class="btn btn-outline" asp-controller="Cart" asp-action="Index"><i class="fa fa-arrow-left" aria-hidden="true"></i> @Localizer["BackToCart"]</a>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> @Localizer["ConfirmOrder"]</button>
+            </div>
+        </form>
+
+        <aside class="card-box summary" aria-labelledby="titre-recap">
+            <h2 id="titre-recap">@Localizer["OrderSummary"]</h2>
+            <ul class="summary-lines">
+                @foreach (var ligne in panier.Lines)
+                {
+                    <li>
+                        <span>@ligne.Quantity × @ligne.Product.Name</span>
+                        <span class="num">@((ligne.Quantity * ligne.Product.Price).ToString("N0")) FCFA</span>
+                    </li>
+                }
+            </ul>
+            <p class="summary-total">
+                <span>@Localizer["Total"]</span>
+                <strong>@panier.GetTotalValue().ToString("N0") FCFA</strong>
+            </p>
+        </aside>
     </div>
-    <div class="row">
-        <div class="form-group col-4">
-            <label>@Localizer["City"]*:</label><input asp-for="City" class="form-control" />
-        </div>
-        <div class="form-group col-4">
-            <label>@Localizer["Zip"]:</label><input asp-for="Zip" class="form-control" />
-        </div>
-        <div class="form-group col-4">
-            <label>@Localizer["Country"]*:</label><input asp-for="Country" class="form-control" />
-        </div>
-    </div>
-    <div class="text-center">
-        <input class="btn btn-primary" type="submit" value="@Localizer["CompleteOrder"]" />
-    </div>
-</form>
+}

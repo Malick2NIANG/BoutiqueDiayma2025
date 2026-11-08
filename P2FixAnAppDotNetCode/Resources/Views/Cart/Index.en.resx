@@ -148,4 +148,34 @@
     <value>Average</value>
     <comment>Average</comment>
   </data>
+  <data name="ItemsCount" xml:space="preserve">
+    <value>{0} item(s)</value>
+  </data>
+  <data name="EmptyCart" xml:space="preserve">
+    <value>Your cart is empty.</value>
+  </data>
+  <data name="EmptyCartHint" xml:space="preserve">
+    <value>Browse our products and add the ones you like.</value>
+  </data>
+  <data name="SeeProducts" xml:space="preserve">
+    <value>See products</value>
+  </data>
+  <data name="UnitPrice" xml:space="preserve">
+    <value>Unit price</value>
+  </data>
+  <data name="AveragePerItem" xml:space="preserve">
+    <value>Average price per item</value>
+  </data>
+  <data name="ConfirmRemove" xml:space="preserve">
+    <value>Remove this product from your cart?</value>
+  </data>
+  <data name="Decrease" xml:space="preserve">
+    <value>Decrease quantity</value>
+  </data>
+  <data name="Increase" xml:space="preserve">
+    <value>Increase quantity</value>
+  </data>
+  <data name="MaxReached" xml:space="preserve">
+    <value>Stock limit reached</value>
+  </data>
 </root>

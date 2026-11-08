@@ -1,1 +1,218 @@
-body{padding-top:50px;padding-bottom:20px}.body-content{padding-left:15px;padding-right:15px}.carousel-caption p{font-size:20px;line-height:1.4}.carousel-inner .item img[src$=".svg"]{width:100%}#qrCode{margin:15px}@media screen and (max-width:767px){.carousel-caption{display:none}}
+/* =========================================================
+   Boutique Diayma – feuille de style
+   Ergonomie : critères de Bastien et Scapin
+   ========================================================= */
+
+:root {
+    --vert: #0b6e4f;
+    --vert-fonce: #08533b;
+    --vert-clair: #e6f4ee;
+    --jaune: #f2b134;
+    --rouge: #c0392b;
+    --texte: #1f2933;
+    --gris: #5f6b7a;
+    --bord: #dfe3e8;
+    --fond: #f5f7f9;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--texte);
+    background: var(--fond);
+}
+
+a { color: var(--vert); }
+a:hover, a:focus { color: var(--vert-fonce); }
+
+/* Focus clavier toujours visible */
+a:focus, button:focus, input:focus, select:focus {
+    outline: 3px solid var(--jaune);
+    outline-offset: 2px;
+}
+
+.sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;
+}
+
+.skip-link { position: absolute; left: -9999px; top: 8px; }
+.skip-link:focus {
+    left: 16px; z-index: 100; background: #fff; color: var(--texte);
+    padding: 8px 12px; border-radius: 6px;
+}
+
+/* ---------- En-tête ---------- */
+.site-header { background: var(--vert); color: #fff; }
+.header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px; padding-top: 14px; padding-bottom: 14px;
+}
+.brand {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: #fff; font-size: 1.4rem; font-weight: 700; text-decoration: none;
+}
+.brand:hover, .brand:focus { color: #fff; text-decoration: none; }
+.main-nav { display: flex; align-items: center; gap: 20px; }
+.main-nav > a { color: #fff; font-weight: 600; }
+.main-nav > a:hover, .main-nav > a:focus { color: #fff; }
+.cart-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px; border-radius: 999px;
+    background: rgba(255, 255, 255, .16); text-decoration: none;
+}
+.cart-link:hover, .cart-link:focus { background: rgba(255, 255, 255, .28); text-decoration: none; }
+.cart-count {
+    min-width: 24px; padding: 0 7px; border-radius: 999px; text-align: center;
+    background: var(--jaune); color: var(--texte); font-weight: 700;
+}
+.cart-total { font-weight: 400; }
+
+/* ---------- Page ---------- */
+.page { padding-top: 28px; padding-bottom: 48px; }
+.page-head h1 { margin: 0 0 4px; font-size: 1.8rem; font-weight: 700; }
+.lead-text { margin: 0 0 20px; color: var(--gris); }
+
+/* ---------- Messages (feedback) ---------- */
+.notice {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 20px; padding: 12px 16px; border: 1px solid; border-radius: 8px;
+}
+.notice ul { margin: 0; padding-left: 18px; }
+.notice-success { background: var(--vert-clair); border-color: #a8d5c2; color: #0b5137; }
+.notice-warning { background: #fff6e0; border-color: #f2d27a; color: #6b4e00; }
+.notice-danger { background: #fdecea; border-color: #f5b7b1; color: #8e2a1f; }
+.notice-link { margin-left: auto; font-weight: 600; color: inherit; text-decoration: underline; }
+.validation-summary-valid { display: none; }
+
+/* ---------- Tableaux ---------- */
+.table-wrap {
+    background: #fff; border: 1px solid var(--bord); border-radius: 10px; overflow-x: auto;
+}
+.data-table { width: 100%; min-width: 640px; border-collapse: collapse; margin: 0; }
+.data-table th, .data-table td {
+    padding: 14px 16px; border-bottom: 1px solid var(--bord);
+    text-align: left; vertical-align: middle;
+}
+.data-table thead th {
+    background: #eef2f5; color: var(--gris);
+    font-size: .85rem; text-transform: uppercase; letter-spacing: .03em;
+}
+.data-table tbody tr:hover { background: #fafbfc; }
+.data-table tfoot th, .data-table tfoot td { border-bottom: none; }
+.num { text-align: right !important; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.center { text-align: center !important; }
+.strong, .price { font-weight: 600; }
+.action-col { text-align: right !important; white-space: nowrap; }
+.product-name { display: block; font-weight: 600; }
+.product-desc { display: block; color: var(--gris); font-size: .9rem; }
+.badge-stock {
+    display: inline-block; padding: 2px 10px; border-radius: 999px;
+    font-size: .85rem; font-weight: 600;
+}
+.badge-stock.ok { background: var(--vert-clair); color: #0b5137; }
+.badge-stock.low { background: #fff6e0; color: #6b4e00; }
+.in-cart { display: block; margin-top: 4px; color: var(--vert); font-size: .85rem; }
+.total-row th, .total-row td { background: #f8faf9; font-size: 1.15rem; font-weight: 700; }
+.average-row th, .average-row td { padding-top: 4px; color: var(--gris); font-size: .9rem; font-weight: 400; }
+
+/* ---------- Boutons (homogènes) ---------- */
+.btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 42px; padding: 8px 16px; border: 2px solid transparent; border-radius: 8px;
+    font-size: 1rem; font-weight: 600; line-height: 1.2; text-decoration: none; cursor: pointer;
+}
+.btn-primary { background: var(--vert); border-color: var(--vert); color: #fff; }
+.btn-primary:hover, .btn-primary:focus {
+    background: var(--vert-fonce); border-color: var(--vert-fonce); color: #fff; text-decoration: none;
+}
+.btn-outline { background: #fff; border-color: var(--vert); color: var(--vert); }
+.btn-outline:hover, .btn-outline:focus { background: var(--vert-clair); color: var(--vert-fonce); text-decoration: none; }
+.btn-disabled, .btn[disabled] {
+    background: #e9ecef; border-color: #e9ecef; color: #5f6b7a; cursor: not-allowed;
+}
+.btn-link-danger { min-height: 0; padding: 6px 8px; background: none; border: none; color: var(--rouge); }
+.btn-link-danger:hover, .btn-link-danger:focus { color: #922b21; text-decoration: underline; }
+.btn-light { min-height: 34px; padding: 4px 12px; background: #fff; border-color: var(--bord); color: var(--texte); }
+.btn-light:hover, .btn-light:focus { background: var(--vert-clair); }
+td form { margin: 0; }
+
+/* ---------- Quantités ---------- */
+.qty { display: inline-flex; align-items: center; gap: 8px; }
+.qty form { margin: 0; }
+.qty-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px; border: 2px solid var(--vert); border-radius: 50%;
+    background: #fff; color: var(--vert); cursor: pointer;
+}
+.qty-btn:hover, .qty-btn:focus { background: var(--vert-clair); }
+.qty-btn[disabled] { border-color: #c7ccd1; background: #f3f4f5; color: #9aa3ad; cursor: not-allowed; }
+.qty-value { min-width: 28px; text-align: center; font-weight: 700; }
+
+.page-actions {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 24px;
+}
+
+/* ---------- États vides / confirmation ---------- */
+.empty-state {
+    padding: 48px 24px; text-align: center;
+    background: #fff; border: 1px dashed var(--bord); border-radius: 12px;
+}
+.empty-state > .fa { margin-bottom: 12px; font-size: 3rem; color: var(--vert); }
+.empty-state.success { border-style: solid; }
+.empty-state.success > .fa { font-size: 4rem; }
+.empty-state h1 { font-size: 1.8rem; font-weight: 700; }
+.empty-title { margin-bottom: 6px; font-size: 1.25rem; font-weight: 600; }
+
+/* ---------- Étapes de la commande (guidage) ---------- */
+.steps { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; padding: 0; list-style: none; }
+.steps li { display: flex; align-items: center; gap: 8px; color: var(--gris); font-weight: 600; }
+.steps li + li::before { content: ""; width: 40px; height: 2px; margin-right: 8px; background: var(--bord); }
+.step-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border: 2px solid var(--bord); border-radius: 50%;
+    background: #fff; font-size: .9rem;
+}
+.steps li.current { color: var(--texte); }
+.steps li.current .step-num { background: var(--vert); border-color: var(--vert); color: #fff; }
+.steps li.done { color: var(--vert); }
+.steps li.done .step-num { border-color: var(--vert); color: var(--vert); }
+
+/* ---------- Formulaire de commande ---------- */
+.checkout { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; align-items: start; }
+.card-box { padding: 24px; background: #fff; border: 1px solid var(--bord); border-radius: 12px; }
+.required-legend { color: var(--gris); font-size: .9rem; }
+.req { color: var(--rouge); }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; margin-bottom: 4px; font-weight: 600; }
+.form-control {
+    width: 100%; min-height: 44px; padding: 8px 12px;
+    border: 1px solid #b8c1cc; border-radius: 8px; font-size: 1rem;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.input-validation-error { border-color: var(--rouge) !important; background: #fff8f7; }
+.field-error { display: block; margin-top: 4px; color: var(--rouge); font-size: .9rem; }
+.summary h2 { margin: 0 0 12px; font-size: 1.15rem; font-weight: 700; }
+.summary-lines { margin: 0 0 12px; padding: 0; list-style: none; }
+.summary-lines li {
+    display: flex; justify-content: space-between; gap: 12px;
+    padding: 6px 0; border-bottom: 1px solid var(--bord); font-size: .95rem;
+}
+.summary-total { display: flex; justify-content: space-between; margin: 0; font-size: 1.1rem; }
+
+/* ---------- Pied de page ---------- */
+.site-footer { padding: 16px 0; background: #fff; border-top: 1px solid var(--bord); color: var(--gris); font-size: .9rem; }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-inner p { margin: 0; }
+.lang-form { display: flex; align-items: center; gap: 8px; margin: 0; }
+.lang-form label { margin: 0; color: var(--texte); font-weight: 600; }
+.lang-form select { min-height: 34px; padding: 2px 8px; border: 1px solid #b8c1cc; border-radius: 6px; background: #fff; }
+
+/* ---------- Petits écrans (adaptabilité) ---------- */
+@media (max-width: 768px) {
+    .checkout, .form-row { grid-template-columns: 1fr; }
+    .page-head h1 { font-size: 1.5rem; }
+    .cart-total { display: none; }
+}

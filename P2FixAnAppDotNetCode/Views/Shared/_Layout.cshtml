@@ -1,41 +1,56 @@
-﻿<!DOCTYPE html>
-<html>
+@using System.Globalization
+@{
+    string langue = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+}
+<!DOCTYPE html>
+<html lang="@langue">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet"
-          asp-href-include="/lib/bootstrap/dist/**/*.min.css"
-          asp-href-exclude="**/*-reboot*,**/*-grid*" />
-    <link rel="stylesheet" asp-href-include="/lib/fontawesome/css/*.css" />
-    @*<link rel="stylesheet" asp-href-include="/css/*.css" />*@
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] – Boutique Diayma</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/fontawesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
-    <title>@ViewData["Title"] - ESP EHOD 2025</title>
 </head>
 <body>
-    <div class="navbar navbar-inverse bg-primary" role="navigation">
-        <div class="row">
-            <a class="col navbar-brand" asp-action="Index" asp-controller="Product" style="padding-left:12%">
-                Boutique Diayma
-            </a>
-            <div class="col-4 text-right" style="padding-right:12%">
-                @await Component.InvokeAsync("CartSummary")
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <div class="row">
-                <div class="col-8"><p style="padding-top:17px">&copy; 2025 - ESP EHOD 2025</p></div>
-                <div class="col-4">
-                    @await Component.InvokeAsync("LanguageSelector")
-                </div>
-            </div>
-        </footer>
-    </div>
+    <a class="skip-link" href="#contenu">@Localizer["SkipToContent"]</a>
 
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" asp-controller="Product" asp-action="Index">
+                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                <span>Boutique Diayma</span>
+            </a>
+            <nav class="main-nav" aria-label="@Localizer["MainMenu"]">
+                <a asp-controller="Product" asp-action="Index">@Localizer["Products"]</a>
+                @await Component.InvokeAsync("CartSummary")
+            </nav>
+        </div>
+    </header>
+
+    <main id="contenu" class="container page">
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>&copy; 2026 Boutique Diayma · @Localizer["FooterNote"]</p>
+            @await Component.InvokeAsync("LanguageSelector")
+        </div>
+    </footer>
+
+    <script>
+        // Demande une confirmation avant les actions destructrices (formulaires portant data-confirm)
+        document.addEventListener('submit', function (e) {
+            var message = e.target.getAttribute('data-confirm');
+            if (message && !window.confirm(message)) {
+                e.preventDefault();
+            }
+        });
+    </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

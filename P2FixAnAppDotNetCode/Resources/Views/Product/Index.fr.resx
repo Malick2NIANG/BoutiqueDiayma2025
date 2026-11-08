@@ -135,4 +135,37 @@
   <data name="Stock" xml:space="preserve">
     <value>Stock</value>
   </data>
+  <data name="Intro" xml:space="preserve">
+    <value>Choisissez vos produits et ajoutez-les à votre panier.</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Produit</value>
+  </data>
+  <data name="Availability" xml:space="preserve">
+    <value>Disponibilité</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="InStock" xml:space="preserve">
+    <value>En stock ({0})</value>
+  </data>
+  <data name="LowStock" xml:space="preserve">
+    <value>Plus que {0} en stock</value>
+  </data>
+  <data name="InCart" xml:space="preserve">
+    <value>{0} dans votre panier</value>
+  </data>
+  <data name="AddedToCart" xml:space="preserve">
+    <value>« {0} » a été ajouté à votre panier.</value>
+  </data>
+  <data name="StockLimit" xml:space="preserve">
+    <value>Vous avez déjà dans votre panier tout le stock disponible de « {0} ».</value>
+  </data>
+  <data name="MaxReached" xml:space="preserve">
+    <value>Stock maximum atteint</value>
+  </data>
+  <data name="ViewCart" xml:space="preserve">
+    <value>Voir le panier</value>
+  </data>
 </root>

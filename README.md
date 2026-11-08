@@ -125,10 +125,10 @@ La route par défaut envoie `/` vers **`ProductController.Index`**. Avant d'appe
 | # | Namespace | Classe | Méthode | Mode choisi et justification |
 |---|---|---|---|---|
 | 17 | `AspNetCore` | `_Views_Product_Index` (`Views/Product/Index.cshtml`) | `ExecuteAsync()` | La vue s'exécute en premier : tableau des produits (`foreach (Product p in Model)`) et textes traduits par `IViewLocalizer`. On peut placer un point d'arrêt dans le `.cshtml` et avancer en **F10** |
-| 18 | `AspNetCore` | `_Views_Shared__Layout` (`Views/Shared/_Layout.cshtml`) | `ExecuteAsync()` | Le layout (défini par `_ViewStart.cshtml`) entoure le contenu (`@RenderBody()`) et appelle `@await Component.InvokeAsync("CartSummary")` (l. 22) |
+| 18 | `AspNetCore` | `_Views_Shared__Layout` (`Views/Shared/_Layout.cshtml`) | `ExecuteAsync()` | Le layout (défini par `_ViewStart.cshtml`) entoure le contenu (`@RenderBody()`) et appelle `@await Component.InvokeAsync("CartSummary")` dans l'en-tête |
 | 19 | `P2FixAnAppDotNetCode.Models` | `Cart` | (constructeur implicite, initialisation de `_lignesPanier`) | Singleton créé à la première utilisation |
-| 20 | `P2FixAnAppDotNetCode.Components` | `CartSummaryViewComponent` | `CartSummaryViewComponent(ICart)` (**point d'arrêt l. 12**) puis `Invoke()` | **F10** puis **F11** dans `Invoke()` → `View(_cart)` → `Views/Shared/Components/CartSummary/Default.cshtml` (le panier est vide, seul le bouton panier s'affiche) |
-| 21 | `P2FixAnAppDotNetCode.Components` | `LanguageSelectorViewComponent` | `Invoke(ILanguageService)` | Appelé dans le pied de page (`_Layout` l. 33) → `Views/Shared/Components/LanguageSelector/Default.cshtml` (liste des langues). **F10**, puis **F5** : la page s'affiche dans le navigateur |
+| 20 | `P2FixAnAppDotNetCode.Components` | `CartSummaryViewComponent` | `CartSummaryViewComponent(ICart)` (**point d'arrêt l. 12**) puis `Invoke()` | **F10** puis **F11** dans `Invoke()` → `View(_cart)` → `Views/Shared/Components/CartSummary/Default.cshtml` (lien « Panier » avec le nombre d'articles) |
+| 21 | `P2FixAnAppDotNetCode.Components` | `LanguageSelectorViewComponent` | `Invoke(ILanguageService)` | Appelé dans le pied de page de `_Layout` → `Views/Shared/Components/LanguageSelector/Default.cshtml` (liste des langues). **F10**, puis **F5** : la page s'affiche dans le navigateur |
 
 **À retenir** : sur la page d'accueil, seuls les points d'arrêt de `Startup` (l. 20, une fois), `ProductController` (l. 15) et `CartSummaryViewComponent` (l. 12) sont atteints. Ceux de **`CartController` (l. 15)** et **`OrderController` (l. 17)** ne le sont que plus tard : au clic sur *Ajouter au panier* (`POST /Cart/AddToCart`) et sur *Passer la commande* (`/Order/Index`).
 
@@ -164,5 +164,49 @@ Le dossier `publish/` contient **`Diayma.exe`**. Un double-clic démarre le serv
 2. **Ajout de la langue wolof** : culture `wo`, sélecteur, fichiers `.wo.resx`.
 3. **README** : réponses du TD.
 4. **Devise FCFA, contrôle du stock et langue espagnole** : anomalies 5, 6 et 8.
+5. **Refonte de l'interface selon les critères de Bastien et Scapin** : voir la section 12.
 
 ### c) Dépôt du lien GitHub sur Google Classroom
+
+## 12. Ergonomie : refonte selon les critères de Bastien et Scapin
+
+L'interface d'origine posait plusieurs problèmes :
+- fond beige peu lisible ;
+- prix centrés et affichés en euros ;
+- icône de panier sans libellé ;
+- renvoi automatique vers le panier à chaque ajout ;
+- suppression sans confirmation ;
+- formulaire sans indication des champs obligatoires ni messages par champ ;
+- page de fin demandant de « cliquer sur le logo pour recommencer ».
+
+Elle a été reprise selon les 8 critères de Bastien et Scapin (INRIA, 1993).
+
+| Critère | Sous-critère | Mise en œuvre dans Boutique Diayma |
+|---|---|---|
+| **1. Guidage** | Incitation | Titre et phrase d'introduction sur chaque page. Barre d'étapes *Panier → Livraison → Confirmation*. Exemples de saisie dans les champs (« ex. : Dakar »). |
+| | Groupement / distinction | En-tête (marque, navigation, panier), contenu, pied de page (langue). Nom et description du produit regroupés. Montants alignés à droite. Récapitulatif de commande séparé du formulaire. |
+| | Feedback immédiat | Message « « Clé USB… » a été ajouté à votre panier » après chaque ajout. Compteur d'articles et total dans l'en-tête. Mention « n dans votre panier » sur chaque produit. |
+| | Lisibilité | Fond clair, texte foncé bien contrasté, police système, chiffres alignés, prix séparés par milliers (`88 000 FCFA`). |
+| **2. Charge de travail** | Brièveté | Boutons **−** / **+** pour changer une quantité directement dans le panier. Pays pré-rempli (« Sénégal »). Saisie automatique du navigateur (`autocomplete`). |
+| | Densité informationnelle | Colonnes réduites à l'essentiel (Produit, Prix, Disponibilité, Action). Le prix moyen est relégué en petit sous le total. |
+| **3. Contrôle explicite** | Actions explicites | Aucune action automatique : l'ajout laisse l'utilisateur sur la liste. Changement de langue validé par « Appliquer ». Commande validée par « Confirmer la commande ». |
+| | Contrôle utilisateur | Retour possible à chaque étape (« Continuer les achats », « Retour au panier », « Retour à la boutique »). |
+| **4. Adaptabilité** | Flexibilité | 4 langues (français, anglais, wolof, espagnol), chacune présentée dans sa propre langue. Mise en page adaptée aux petits écrans. |
+| | Expérience de l'utilisateur | Lien d'évitement « Aller au contenu principal » pour le clavier. Focus visible. Libellés pour les lecteurs d'écran (`aria-label`, `sr-only`). |
+| **5. Gestion des erreurs** | Protection | Confirmation avant de retirer un produit. Bouton d'ajout désactivé quand le stock est atteint. Formulaire inaccessible si le panier est vide. |
+| | Qualité des messages | Messages traduits, placés sous le champ concerné (« Veuillez renseigner un nom »), validés dès la saisie (côté client) et côté serveur. |
+| | Correction | Les champs en erreur sont encadrés en rouge et conservent les valeurs déjà saisies. |
+| **6. Homogénéité / cohérence** | — | Une seule couleur pour les actions principales (vert), un style secondaire (contour) pour les retours, rouge pour la suppression. Même format de prix partout. Même structure de page. |
+| **7. Signifiance des codes et dénominations** | — | Icônes toujours accompagnées d'un texte (panier, poubelle, coche). Libellés clairs : « Adresse » au lieu de « Localisation », « Code postal (facultatif) », « Stock maximum atteint ». Pastilles vertes et orange pour la disponibilité. |
+| **8. Compatibilité** | — | Prix en **FCFA**, pays par défaut **Sénégal**, interface en **wolof**, exemples de saisie locaux (Awa Diop, Dakar). |
+
+Fichiers modifiés :
+- `Views/Shared/_Layout.cshtml`, `Views/Shared/_Steps.cshtml` (nouveau) ;
+- vues `Product`, `Cart`, `Order`, `CartSummary`, `LanguageSelector` ;
+- `wwwroot/css/site.css` ;
+- `CartController` : message de confirmation, bouton « − », retrait fiable d'un produit ;
+- `OrderController` : pays par défaut ;
+- fichiers `.resx` en / fr / wo / es.
+
+Les lignes des points d'arrêt de la section 7 sont inchangées.
+

@@ -148,4 +148,34 @@
     <value>Total</value>
     <comment>Total</comment>
   </data>
+  <data name="ItemsCount" xml:space="preserve">
+    <value>{0} artículo(s)</value>
+  </data>
+  <data name="EmptyCart" xml:space="preserve">
+    <value>Su carrito está vacío.</value>
+  </data>
+  <data name="EmptyCartHint" xml:space="preserve">
+    <value>Explore nuestros productos y añada los que le interesen.</value>
+  </data>
+  <data name="SeeProducts" xml:space="preserve">
+    <value>Ver los productos</value>
+  </data>
+  <data name="UnitPrice" xml:space="preserve">
+    <value>Precio unitario</value>
+  </data>
+  <data name="AveragePerItem" xml:space="preserve">
+    <value>Precio medio por artículo</value>
+  </data>
+  <data name="ConfirmRemove" xml:space="preserve">
+    <value>¿Quitar este producto de su carrito?</value>
+  </data>
+  <data name="Decrease" xml:space="preserve">
+    <value>Disminuir la cantidad</value>
+  </data>
+  <data name="Increase" xml:space="preserve">
+    <value>Aumentar la cantidad</value>
+  </data>
+  <data name="MaxReached" xml:space="preserve">
+    <value>Límite de stock alcanzado</value>
+  </data>
 </root>

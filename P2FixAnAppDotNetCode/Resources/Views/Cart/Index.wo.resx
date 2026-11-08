@@ -148,4 +148,34 @@
     <value>Lépp</value>
     <comment>Total</comment>
   </data>
+  <data name="ItemsCount" xml:space="preserve">
+    <value>{0} marsandiis</value>
+  </data>
+  <data name="EmptyCart" xml:space="preserve">
+    <value>Sa panier dafa neen.</value>
+  </data>
+  <data name="EmptyCartHint" xml:space="preserve">
+    <value>Xoolal sunu marsandiis te yokk yi la neex.</value>
+  </data>
+  <data name="SeeProducts" xml:space="preserve">
+    <value>Xool marsandiis yi</value>
+  </data>
+  <data name="UnitPrice" xml:space="preserve">
+    <value>Njëg benn</value>
+  </data>
+  <data name="AveragePerItem" xml:space="preserve">
+    <value>Njëg gu diggu ci benn marsandiis</value>
+  </data>
+  <data name="ConfirmRemove" xml:space="preserve">
+    <value>Ndax nga bëgg far marsandiis bii ci sa panier ?</value>
+  </data>
+  <data name="Decrease" xml:space="preserve">
+    <value>Wàññi lim bi</value>
+  </data>
+  <data name="Increase" xml:space="preserve">
+    <value>Yokk lim bi</value>
+  </data>
+  <data name="MaxReached" xml:space="preserve">
+    <value>Stock bi jeex na</value>
+  </data>
 </root>
